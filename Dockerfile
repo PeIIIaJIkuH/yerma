@@ -1,4 +1,4 @@
-FROM node as builder
+FROM node:alpine
 
 WORKDIR /app
 
@@ -8,7 +8,11 @@ RUN npm i -g pnpm
 
 RUN pnpm install
 
-RUN pnpm run build
+EXPOSE 3000
+
+CMD ["pnpm", "run", "dev;"]
+
+#RUN pnpm run build
 
 #FROM nginx:alpine
 #

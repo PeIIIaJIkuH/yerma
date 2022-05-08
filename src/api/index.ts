@@ -4,10 +4,10 @@ import {AuthService} from '../services'
 import {authState} from '../store'
 import {IToken} from '../types'
 
-const {API_URL} = import.meta.env
+const {VITE_API_URL} = import.meta.env
 
 export const $api = axios.create({
-	baseURL: API_URL,
+	baseURL: VITE_API_URL,
 })
 
 $api.interceptors.request.use(
