@@ -4,7 +4,7 @@ import {AuthService} from '../services'
 import {authState} from '../store'
 import {IToken} from '../types'
 
-const API_URL = `http://86.107.198.77:8000/api/`
+const {API_URL} = import.meta.env
 
 export const $api = axios.create({
 	baseURL: API_URL,
