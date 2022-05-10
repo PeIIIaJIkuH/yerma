@@ -1,6 +1,7 @@
 {
 	"name": "yerma",
 	"private": true,
+	"homepage": "http://86.107.198.77:8080/",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
