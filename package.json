@@ -1,7 +1,6 @@
 {
 	"name": "yerma",
 	"private": true,
-	"version": "0.0.0",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
@@ -21,6 +20,7 @@
 		"react-dom": "^18.0.0",
 		"react-responsive-carousel": "^3.2.23",
 		"react-router-dom": "^6.3.0",
+		"react-scripts": "^5.0.1",
 		"tabler-icons-react": "^1.47.0"
 	},
 	"devDependencies": {

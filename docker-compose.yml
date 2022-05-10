@@ -3,9 +3,12 @@ version: '3'
 services:
   front:
     build: .
+#      context: https://github.com/PeIIIaJIkuH/yerma.git#main
     restart: always
-    command: yarn run dev --host 0.0.0.0
+    tty: true
+#    command: http-server dist -a 0.0.0.0 -p 8080
+    command: yarn run preview --host 0.0.0.0
     ports:
-      - "3000:3000"
+      - "8080:4173"
     env_file:
       - .env
