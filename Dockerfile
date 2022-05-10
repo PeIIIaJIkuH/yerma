@@ -12,6 +12,8 @@ RUN yarn install
 # копируем файлы и каталоги проекта в текущий рабочий каталог (т.е. в каталог 'app')
 COPY . .
 
+RUN yarn run build
+
 # 2
 #FROM node:lts-alpine
 #
