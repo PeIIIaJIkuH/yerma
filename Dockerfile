@@ -1,11 +1,10 @@
-FROM node:14
+FROM node:16
 
 # делаем каталог 'app' текущим рабочим каталогом
 WORKDIR /app
 
 # копируем 'package.json' и 'yarn.lock'
-COPY package.json ./
-COPY yarn.lock ./
+COPY package.json yarn.lock ./
 
 # устанавливаем зависимости проекта
 RUN yarn install
