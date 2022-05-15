@@ -29,10 +29,11 @@ export const Navbar: FC<Props> = ({isOpen, closeNavbar}) => {
 				<ButtonLink path={privateRoutes.essays.path} fullWidth callback={closeNavbar}>
 					Эссе
 				</ButtonLink>
-				<ButtonLink path={privateRoutes.teachers.path} fullWidth callback={closeNavbar} disabled>
+				<ButtonLink path={privateRoutes.teachers.path} fullWidth callback={closeNavbar}>
 					Преподаватели
 				</ButtonLink>
-				<ButtonLink path={privateRoutes.alumni.path} fullWidth callback={closeNavbar} disabled>Выпускники
+				<ButtonLink path={privateRoutes.alumni.path} fullWidth callback={closeNavbar}>
+					Выпускники
 				</ButtonLink>
 				<ButtonLink path={privateRoutes.career.path} fullWidth callback={closeNavbar}>
 					Карьера

@@ -4,6 +4,7 @@ import {FC, useEffect} from 'react'
 import {postsState} from '../../store'
 import {PostCategoryEnum} from '../../types'
 import {PostCard} from '../PostCard'
+import s from './Posts.module.css'
 
 interface Props {
 	category: PostCategoryEnum
@@ -21,7 +22,7 @@ export const Posts: FC<Props> = observer(({category}) => {
 	}, [category])
 
 	return (
-		<Grid p='md' sx={{position: 'relative'}}>
+		<Grid p='md' sx={{position: 'relative'}} className={s.wrapper}>
 			<LoadingOverlay visible={postsState.loading}/>
 			{postsState.posts.map(({uuid, name, description, author, images}) => (
 				<Grid.Col key={uuid}>

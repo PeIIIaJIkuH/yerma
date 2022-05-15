@@ -1,8 +1,9 @@
 import {FC} from 'react'
-import {Users} from '../../components'
+import {Posts} from '../../components'
+import {PostCategoryEnum} from '../../types'
 
 export const MemoryPage: FC = () => {
 	return (
-		<Users groupId='id'/>
+		<Posts category={PostCategoryEnum.MEMORY}/>
 	)
 }

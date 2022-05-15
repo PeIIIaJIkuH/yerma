@@ -13,7 +13,6 @@ import {Preloader} from './Preloader'
 import {Routes} from './Routes'
 import {Slider} from './Slider'
 import {UserGroupCard} from './UserGroupCard'
-import {Users} from './Users'
 
 export {
 	App,
@@ -31,5 +30,4 @@ export {
 	Gaudeamus,
 	AppPreloader,
 	Posts,
-	Users,
 }

@@ -45,6 +45,9 @@ export enum PostCategoryEnum {
 	LEISURE = 'LEISURE',
 	GALLERY = 'GALLERY',
 	MUSE = 'MUSE',
+	TEACHERS = 'TEACHERS',
+	ALUMNI = 'ALUMNI',
+	MEMORY = 'MEMORY',
 }
 
 export enum CreatePagePostCategoryEnum {
@@ -66,6 +69,9 @@ export const PostCategoryLabels: Record<PostCategoryEnum, string> = {
 	LEISURE: 'Досуг',
 	GALLERY: 'Галлерея',
 	MUSE: 'Музыка',
+	TEACHERS: 'Преподаватели',
+	ALUMNI: 'Выпускники',
+	MEMORY: 'Память',
 }
 
 export interface IPost {
@@ -84,14 +90,6 @@ export interface IPostImage {
 	created_at: string
 	updated_at: string
 	image: string
-}
-
-export interface ICreatePost {
-	author: string
-	categories: PostCategoryEnum[]
-	name: string
-	description: string
-	images: string[]
 }
 
 export interface IToken {
