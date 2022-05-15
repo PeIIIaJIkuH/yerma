@@ -4,7 +4,6 @@ import {NotificationsProvider} from '@mantine/notifications'
 import {observer} from 'mobx-react-lite'
 import {FC, useEffect, useState} from 'react'
 import {BrowserRouter} from 'react-router-dom'
-import {Helmet} from 'tabler-icons-react'
 import {appState} from '../../store'
 import {AppPreloader} from '../AppPreloader/AppPreloader'
 import {Aside} from '../Aside'
@@ -74,11 +73,9 @@ export const App: FC = observer(() => {
 								padding={0}
 							>
 								<Container p={0} sx={{height: '90%', position: 'relative', width: '100%'}}>
-									<Helmet>
-										<meta name='theme-color'
-											content={colorScheme === 'light' ? '#fff' : '#1a1b1e'}
-										/>
-									</Helmet>
+									<meta name='theme-color'
+										content={colorScheme === 'light' ? '#fff' : '#1a1b1e'}
+									/>
 									<Routes/>
 								</Container>
 							</AppShell>
