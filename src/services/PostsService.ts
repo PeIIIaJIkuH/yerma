@@ -1,11 +1,11 @@
 import {$api} from '../api'
-import {IPost, PostCategoryEnum} from '../types'
+import {IPost, PostFilters} from '../types'
 
 export class PostsService {
-	static async getPosts(category: PostCategoryEnum, offset: number): Promise<{results: IPost[]}> {
+	static async getPosts(filters: PostFilters, offset: number): Promise<{results: IPost[]}> {
 		return $api.get('posts/', {
 			params: {
-				category,
+				...filters,
 				offset,
 				limit: 10,
 			},

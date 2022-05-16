@@ -1,4 +1,12 @@
-import {AppShell, ColorScheme, ColorSchemeProvider, Container, MantineProvider, Paper} from '@mantine/core'
+import {
+	AppShell,
+	ColorScheme,
+	ColorSchemeProvider,
+	Container,
+	MantineProvider,
+	Paper,
+	useMantineTheme,
+} from '@mantine/core'
 import {useColorScheme, useHotkeys, useLocalStorage} from '@mantine/hooks'
 import {NotificationsProvider} from '@mantine/notifications'
 import {observer} from 'mobx-react-lite'
@@ -21,6 +29,7 @@ export const App: FC = observer(() => {
 	})
 	const [isNavbarOpen, setIsNavbarOpen] = useState(false)
 	const [isAsideOpen, setIsAsideOpen] = useState(false)
+	const theme = useMantineTheme()
 
 	const toggleColorScheme = (value?: ColorScheme) => {
 		if (value) {
@@ -59,7 +68,7 @@ export const App: FC = observer(() => {
 			<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
 				<MantineProvider theme={{colorScheme}} withCSSVariables withNormalizeCSS>
 					<NotificationsProvider>
-						<Paper radius={0} className={s.paper}>
+						<Paper radius={0} className={s.paper} style={{background: theme.colors.gray[2]}}>
 							<AppShell
 								fixed
 								navbarOffsetBreakpoint='sm'

@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx'
 import {PostsService} from '../services'
-import {IPost, PostCategoryEnum} from '../types'
+import {IPost, PostCategoryEnum, PostFilters} from '../types'
 import {authState} from './index'
 
 export class PostsState {
@@ -33,7 +33,7 @@ export class PostsState {
 		this.loading = loading
 	}
 
-	async fetchPosts(category: PostCategoryEnum, another?: boolean) {
+	async fetchPosts(filters: PostFilters, another?: boolean) {
 		if ((!this.hasMore && !another) || !authState.user) {
 			return
 		}
@@ -44,7 +44,7 @@ export class PostsState {
 		}
 		this.setLoading(true)
 		try {
-			const {results} = await PostsService.getPosts(category, this.offset)
+			const {results} = await PostsService.getPosts(filters, this.offset)
 			this.updateOffset()
 			if (!results || results.length < 10) {
 				this.setHasMore(false)

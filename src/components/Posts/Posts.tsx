@@ -12,12 +12,12 @@ interface Props {
 
 export const Posts: FC<Props> = observer(({category}) => {
 	const fetchMore = async () => {
-		await postsState.fetchPosts(category)
+		await postsState.fetchPosts({category})
 	}
 
 	useEffect(() => {
 		(async () => {
-			await postsState.fetchPosts(category, true)
+			await postsState.fetchPosts({category}, true)
 		})()
 	}, [category])
 

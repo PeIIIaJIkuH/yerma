@@ -71,7 +71,7 @@ export const Header: FC<Props> = observer(({toggleColorScheme, isNavbarOpen, tog
 	}
 
 	return (
-		<MantineHeader height={70} py='md' px={isTablet ? 'xs' : 'md'}>
+		<MantineHeader height={70} py='md' px={isTablet ? 'xs' : 'md'} style={{background: theme.colors.gray[0]}}>
 			<Group position='apart'>
 				{isTablet ? (
 					<Burger opened={isNavbarOpen} onClick={onBurgerClick} size={26} color='gray'/>

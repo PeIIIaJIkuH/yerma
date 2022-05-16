@@ -22,6 +22,7 @@ export const Aside: FC<Props> = ({isOpen, closeNavbar}) => {
 			hiddenBreakpoint='sm'
 			width={{sm: 200}}
 			className={clsx(s.aside, isDark ? s.dark : s.light, isTablet && s.tabletAside)}
+			style={{background: theme.colors.gray[0]}}
 		>
 			<MantineAside.Section grow component={ScrollArea}>
 				<ButtonLink path={privateRoutes.leisure.path} fullWidth callback={closeNavbar}>
@@ -36,9 +37,9 @@ export const Aside: FC<Props> = ({isOpen, closeNavbar}) => {
 				<ButtonLink path={privateRoutes.muz.path} fullWidth callback={closeNavbar}>
 					“9 Муз”
 				</ButtonLink>
-				<ButtonLink path={privateRoutes.calendar.path} fullWidth callback={closeNavbar} disabled>
-					Памятный календарь
-				</ButtonLink>
+				{/*<ButtonLink path={privateRoutes.calendar.path} fullWidth callback={closeNavbar} disabled>*/}
+				{/*	Памятный календарь*/}
+				{/*</ButtonLink>*/}
 				<ButtonLink path={privateRoutes.memory.path} fullWidth callback={closeNavbar}>
 					Memory
 				</ButtonLink>

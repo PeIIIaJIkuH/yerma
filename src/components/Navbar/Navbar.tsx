@@ -17,7 +17,7 @@ export const Navbar: FC<Props> = ({isOpen, closeNavbar}) => {
 
 	return (
 		<MantineNavbar hidden={!isOpen} className={clsx(isTablet && s.tabletNavbar)} hiddenBreakpoint='sm'
-			width={{sm: 200}}
+			width={{sm: 200}} style={{background: theme.colors.gray[0]}}
 		>
 			<MantineNavbar.Section grow component={ScrollArea}>
 				<ButtonLink path={privateRoutes.almaMater.path} fullWidth callback={closeNavbar}>
@@ -55,9 +55,9 @@ export const Navbar: FC<Props> = ({isOpen, closeNavbar}) => {
 						<ButtonLink path={privateRoutes.muz.path} fullWidth callback={closeNavbar}>
 							“9 Муз”
 						</ButtonLink>
-						<ButtonLink path={privateRoutes.calendar.path} fullWidth callback={closeNavbar}>
-							Памятный календарь
-						</ButtonLink>
+						{/*<ButtonLink path={privateRoutes.calendar.path} fullWidth callback={closeNavbar}>*/}
+						{/*	Памятный календарь*/}
+						{/*</ButtonLink>*/}
 						<ButtonLink path={privateRoutes.memory.path} fullWidth callback={closeNavbar}>
 							Memory
 						</ButtonLink>
