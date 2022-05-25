@@ -11,15 +11,16 @@ import {
 	TextInput,
 	useMantineTheme,
 } from '@mantine/core'
-import {useMediaQuery} from '@mantine/hooks'
+import {useForm, useMediaQuery} from '@mantine/hooks'
 import {showNotification} from '@mantine/notifications'
 import clsx from 'clsx'
 import {observer} from 'mobx-react-lite'
-import {FC, useState} from 'react'
+import {FC, useRef, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {Login, Plus, Search, User} from 'tabler-icons-react'
 import {privateRoutes, publicRoutes} from '../../routes'
 import {authState} from '../../store'
+import {ISearch} from '../../types'
 import {ButtonLink} from '../ButtonLink'
 import {DarkModeButton} from '../DarkModeButton'
 import s from './Header.module.css'
@@ -37,6 +38,12 @@ export const Header: FC<Props> = observer(({toggleColorScheme, isNavbarOpen, tog
 	const isSmallDesktop = useMediaQuery(`(max-width: ${theme.breakpoints.md}px)`)
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+	const ref = useRef<HTMLInputElement>(null)
+	const form = useForm<ISearch>({
+		initialValues: {
+			query: '',
+		},
+	})
 
 	const onBurgerClick = () => {
 		toggleNavbar()
@@ -70,6 +77,19 @@ export const Header: FC<Props> = observer(({toggleColorScheme, isNavbarOpen, tog
 		})
 	}
 
+	const onSubmit = form.onSubmit(({query}) => {
+		if (query) {
+			navigate({
+				pathname: privateRoutes.search.path,
+				search: `?query=${query}`,
+			})
+			form.setValues({
+				query: '',
+			})
+			ref.current?.blur()
+		}
+	})
+
 	return (
 		<MantineHeader height={70} py='md' px={isTablet ? 'xs' : 'md'} style={{background: theme.colors.gray[0]}}>
 			<Group position='apart'>
@@ -97,17 +117,27 @@ export const Header: FC<Props> = observer(({toggleColorScheme, isNavbarOpen, tog
 							Добавить пост
 						</ButtonLink>
 					))}
-					{isTablet ? (
-						<>
-							<ActionIcon size={36} title='Поиск' variant='default' onClick={onSearchClick}>
-								<Search size={18}/>
-							</ActionIcon>
-							<Modal opened={isModalOpen} onClose={onModalClose} withCloseButton={false}>
-								<TextInput placeholder='Поиск' icon={<Search size={18}/>}/>
-							</Modal>
-						</>
-					) : (
-						<TextInput placeholder='Поиск' icon={<Search size={18}/>} sx={{flexShrink: 1}}/>
+					{authState.user && (
+						<form onSubmit={onSubmit}>
+							{isTablet ? (
+								<>
+									<ActionIcon size={36} title='Поиск' variant='default' onClick={onSearchClick}>
+										<Search size={18}/>
+									</ActionIcon>
+									<Modal opened={isModalOpen} onClose={onModalClose} withCloseButton={false}>
+										<TextInput
+											placeholder='Поиск' {...form.getInputProps('query')}
+											icon={<Search size={18}/>} ref={ref}
+										/>
+									</Modal>
+								</>
+							) : (
+								<TextInput
+									placeholder='Поиск' icon={<Search size={18}/>} ref={ref}
+									sx={{flexShrink: 1}} {...form.getInputProps('query')}
+								/>
+							)}
+						</form>
 					)}
 					{authState.user ? (
 						<Popover opened={isPopoverOpen} position='bottom' onClose={onPopoverClose}

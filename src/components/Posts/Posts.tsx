@@ -7,19 +7,20 @@ import {PostCard} from '../PostCard'
 import s from './Posts.module.css'
 
 interface Props {
-	category: PostCategoryEnum
+	category?: PostCategoryEnum
+	query?: string | null
 }
 
-export const Posts: FC<Props> = observer(({category}) => {
+export const Posts: FC<Props> = observer(({category, query}) => {
 	const fetchMore = async () => {
-		await postsState.fetchPosts({category})
+		await postsState.fetchPosts({category, name: query || undefined})
 	}
 
 	useEffect(() => {
 		(async () => {
-			await postsState.fetchPosts({category}, true)
+			await postsState.fetchPosts({category, name: query || undefined}, true)
 		})()
-	}, [category])
+	}, [category, query])
 
 	return (
 		<Grid p='md' sx={{position: 'relative'}} className={s.wrapper}>

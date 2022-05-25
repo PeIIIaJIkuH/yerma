@@ -15,8 +15,4 @@ export class PostsService {
 	static async createPost(post: FormData): Promise<IPost> {
 		return $api.post('posts/', post)
 	}
-
-	static async getPost(postId: string): Promise<IPost> {
-		return $api.get(`posts/${postId}/`)
-	}
 }

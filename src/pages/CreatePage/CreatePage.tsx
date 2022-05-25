@@ -45,6 +45,8 @@ export const CreatePage: FC = observer(() => {
 	}
 
 	const onSubmit = form.onSubmit(async values => {
+		console.log(values)
+		return
 		ref.current = new FormData()
 		ref.current?.append('author', values.author)
 		ref.current?.append('name', values.title)
@@ -72,7 +74,7 @@ export const CreatePage: FC = observer(() => {
 		['bold', 'italic', 'underline', 'strike', 'clean'],
 		['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
 		['unorderedList', 'orderedList'],
-		['blockquote', 'sub', 'sup'],
+		['image', 'blockquote', 'sub', 'sup'],
 		['alignLeft', 'alignCenter', 'alignRight'],
 	]
 
@@ -90,6 +92,7 @@ export const CreatePage: FC = observer(() => {
 		h6: 'Заголовок 6',
 		unorderedList: 'Маркированный список',
 		orderedList: 'Упорядоченный список',
+		image: 'Загрузить картинку',
 		blockquote: 'Цитировать',
 		sub: 'Нижний индекс',
 		sup: 'Верхний индекс',
@@ -97,6 +100,12 @@ export const CreatePage: FC = observer(() => {
 		alignCenter: 'Выровнять текст по центру',
 		alignRight: 'Выровнять текст по правому краю',
 	}
+
+	// const onImageUpload = async (file: File): Promise<string> => {
+	// 	console.log('123', file)
+	// 	setImages(prev => [...prev, file])
+	// 	return ''
+	// }
 
 	return (
 		<Box mx='auto' mt='lg' p='md'>

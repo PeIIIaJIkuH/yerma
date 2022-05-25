@@ -101,3 +101,7 @@ export interface PostFilters {
 	category?: PostCategoryEnum
 	name?: string
 }
+
+export interface ISearch {
+	query: string
+}

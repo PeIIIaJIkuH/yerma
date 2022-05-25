@@ -19,6 +19,7 @@ type PrivateRoutes =
 	| 'calendar'
 	| 'memory'
 	| 'create'
+	| 'search'
 
 export const publicRoutes: Record<PublicRoutes, IRoute> = {
 	auth: {
@@ -103,5 +104,10 @@ export const privateRoutes: Record<PrivateRoutes, IRoute> = {
 		path: '/create',
 		title: 'Добавить',
 		Component: lazy(() => import('./pages').then(({CreatePage}) => ({default: CreatePage}))),
+	},
+	search: {
+		path: '/search',
+		title: 'Поиск',
+		Component: lazy(() => import('./pages').then(({SearchPage}) => ({default: SearchPage}))),
 	},
 }
