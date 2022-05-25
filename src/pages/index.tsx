@@ -1,7 +1,6 @@
 import {AlmaMaterPage} from './AlmaMaterPage'
 import {AlumniPage} from './AlumniPage'
 import {AuthPage} from './AuthPage'
-import {CalendarPage} from './CalendarPage'
 import {CareerPage} from './CareerPage'
 import {CreatePage} from './CreatePage'
 import {EducationPage} from './EducationPage'
@@ -14,15 +13,14 @@ import {MemoryPage} from './MemoryPage'
 import {MuzPage} from './MuzPage'
 import {NewsPage} from './NewsPage'
 import {Page} from './Page'
+import {SearchPage} from './SearchPage'
 import {TalesPage} from './TalesPage'
 import {TeachersPage} from './TeachersPage'
-import {SearchPage} from './SearchPage'
 
 export {
 	AlmaMaterPage,
 	AlumniPage,
 	AuthPage,
-	CalendarPage,
 	CareerPage,
 	CreatePage,
 	EducationPage,

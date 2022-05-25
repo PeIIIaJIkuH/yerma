@@ -37,9 +37,6 @@ export const Aside: FC<Props> = ({isOpen, closeNavbar}) => {
 				<ButtonLink path={privateRoutes.muz.path} fullWidth callback={closeNavbar}>
 					“9 Муз”
 				</ButtonLink>
-				{/*<ButtonLink path={privateRoutes.calendar.path} fullWidth callback={closeNavbar} disabled>*/}
-				{/*	Памятный календарь*/}
-				{/*</ButtonLink>*/}
 				<ButtonLink path={privateRoutes.memory.path} fullWidth callback={closeNavbar}>
 					Memory
 				</ButtonLink>

@@ -16,7 +16,6 @@ type PrivateRoutes =
 	| 'tales'
 	| 'gallery'
 	| 'muz'
-	| 'calendar'
 	| 'memory'
 	| 'create'
 	| 'search'
@@ -89,11 +88,6 @@ export const privateRoutes: Record<PrivateRoutes, IRoute> = {
 		path: '/muz',
 		title: '9 муз',
 		Component: lazy(() => import('./pages').then(({MuzPage}) => ({default: MuzPage}))),
-	},
-	calendar: {
-		path: '/calendar',
-		title: 'Календарь',
-		Component: lazy(() => import('./pages').then(({CalendarPage}) => ({default: CalendarPage}))),
 	},
 	memory: {
 		path: '/memory',

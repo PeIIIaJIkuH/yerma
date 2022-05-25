@@ -1,24 +1,16 @@
-import {
-	AppShell,
-	ColorScheme,
-	ColorSchemeProvider,
-	Container,
-	MantineProvider,
-	Paper,
-	useMantineTheme,
-} from '@mantine/core'
+import {AppShell, ColorScheme, ColorSchemeProvider, MantineProvider, useMantineTheme} from '@mantine/core'
 import {useColorScheme, useHotkeys, useLocalStorage} from '@mantine/hooks'
-import {NotificationsProvider} from '@mantine/notifications'
+import {NotificationsProvider, showNotification} from '@mantine/notifications'
 import {observer} from 'mobx-react-lite'
 import {FC, useEffect, useState} from 'react'
 import {BrowserRouter} from 'react-router-dom'
+import {HolidayService} from '../../services'
 import {appState} from '../../store'
 import {AppPreloader} from '../AppPreloader/AppPreloader'
 import {Aside} from '../Aside'
 import {Header} from '../Header'
 import {Navbar} from '../Navbar'
 import {Routes} from '../Routes'
-import s from './App.module.css'
 
 export const App: FC = observer(() => {
 	const preferredColorScheme = useColorScheme()
@@ -56,6 +48,18 @@ export const App: FC = observer(() => {
 	useEffect(() => {
 		(async () => {
 			await appState.initializeApp()
+			const {results: holidays} = await HolidayService.getHoliday()
+			if (holidays.length) {
+				showNotification({
+					title: 'Сегодня празднуют',
+					message: holidays.map(({uuid, name}) => (
+						<div key={uuid}>
+							{name}
+						</div>
+					)),
+					color: 'blue',
+				})
+			}
 		})()
 	}, [])
 
@@ -68,27 +72,21 @@ export const App: FC = observer(() => {
 			<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
 				<MantineProvider theme={{colorScheme}} withCSSVariables withNormalizeCSS>
 					<NotificationsProvider>
-						<Paper radius={0} className={s.paper} style={{background: theme.colors.gray[2]}}>
-							<AppShell
-								fixed
-								navbarOffsetBreakpoint='sm'
-								asideOffsetBreakpoint='sm'
-								header={
-									<Header toggleColorScheme={toggleColorScheme} isNavbarOpen={isNavbarOpen}
-										toggleNavbar={toggleNavbar}
-									/>}
-								navbar={<Navbar isOpen={isNavbarOpen} closeNavbar={closeNavbar}/>}
-								aside={<Aside isOpen={isAsideOpen} closeNavbar={closeAside}/>}
-								padding={0}
-							>
-								<Container p={0} sx={{height: '90%', position: 'relative', width: '100%'}}>
-									<meta name='theme-color'
-										content={colorScheme === 'light' ? '#fff' : '#1a1b1e'}
-									/>
-									<Routes/>
-								</Container>
-							</AppShell>
-						</Paper>
+						<AppShell
+							fixed
+							navbarOffsetBreakpoint='sm'
+							asideOffsetBreakpoint='sm'
+							header={
+								<Header toggleColorScheme={toggleColorScheme} isNavbarOpen={isNavbarOpen}
+									toggleNavbar={toggleNavbar}
+								/>}
+							navbar={<Navbar isOpen={isNavbarOpen} closeNavbar={closeNavbar}/>}
+							aside={<Aside isOpen={isAsideOpen} closeNavbar={closeAside}/>}
+							padding={0}
+							style={{background: theme.colors.gray[2]}}
+						>
+							<Routes/>
+						</AppShell>
 					</NotificationsProvider>
 				</MantineProvider>
 			</ColorSchemeProvider>

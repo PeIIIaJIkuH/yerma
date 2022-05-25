@@ -28,13 +28,6 @@ export interface IUser {
 	middle_name?: string
 }
 
-export interface IUserGroup {
-	uuid: string
-	name: string
-	created_at: string
-	updated_at: string
-}
-
 export enum PostCategoryEnum {
 	NEWS = 'NEWS',
 	POST = 'POST',
@@ -104,4 +97,12 @@ export interface PostFilters {
 
 export interface ISearch {
 	query: string
+}
+
+export interface IHoliday {
+	uuid: string
+	created_at: string
+	updated_at: string
+	name: string
+	date: string
 }
