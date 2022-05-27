@@ -26,7 +26,7 @@ $api.interceptors.response.use(
 	async error => {
 		const refreshToken = localStorage.getItem('refreshToken')
 		const originalConfig = error.config
-		if (refreshToken === 'undefined' || !originalConfig._retry) {
+		if (error.response.status === 401 && (refreshToken === 'undefined' || !originalConfig._retry)) {
 			if (authState.user) {
 				authState.logout()
 				showNotification({
@@ -49,11 +49,13 @@ $api.interceptors.response.use(
 			originalConfig._retry = true
 			return $api(originalConfig)
 		} catch (err) {
-			authState.logout()
-			showNotification({
-				message: 'Истёк срок авторизации',
-				color: 'red',
-			})
+			if (axios.isAxiosError(err) && err.response?.status === 401) {
+				authState.logout()
+				showNotification({
+					message: 'Истёк срок авторизации',
+					color: 'red',
+				})
+			}
 			return Promise.reject(err)
 		}
 	},

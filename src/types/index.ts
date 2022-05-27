@@ -26,6 +26,7 @@ export interface IUser {
 	first_name?: string
 	last_name?: string
 	middle_name?: string
+	is_superuser?: boolean
 }
 
 export enum PostCategoryEnum {
@@ -60,7 +61,7 @@ export const PostCategoryLabels: Record<PostCategoryEnum, string> = {
 	EDUCATION: 'Образование',
 	CAREER: 'Карьера',
 	LEISURE: 'Досуг',
-	GALLERY: 'Галлерея',
+	GALLERY: 'Галерея',
 	MUSE: 'Музыка',
 	TEACHERS: 'Преподаватели',
 	ALUMNI: 'Выпускники',
@@ -72,7 +73,7 @@ export interface IPost {
 	created_at: string
 	updated_at: string
 	author: string
-	category: PostCategoryEnum[]
+	category: PostCategoryEnum
 	name: string
 	description: string
 	images: IPostImage[]
@@ -93,6 +94,11 @@ export interface IToken {
 export interface PostFilters {
 	category?: PostCategoryEnum
 	name?: string
+}
+
+export interface FetchPostsParams {
+	anotherType?: boolean
+	unverified?: boolean
 }
 
 export interface ISearch {

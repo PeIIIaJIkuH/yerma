@@ -8,7 +8,7 @@ import {PostCategoryEnum} from '../../types'
 export const CareerPage: FC = observer(() => {
 	return (
 		<>
-			<Image src={careerBg} alt='фон' mx='-md' mt='-md'/>
+			<Image src={careerBg} alt='фон'/>
 			<Posts category={PostCategoryEnum.CAREER}/>
 		</>
 	)

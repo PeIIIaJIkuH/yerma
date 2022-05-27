@@ -6,7 +6,7 @@ import mainBg from '../../assets/images/main-bg.png'
 export const MainPage: FC = () => {
 	return (
 		<>
-			<Image src={mainBg} alt='фон' mx='-md' mt='-md'/>
+			<Image src={mainBg} alt='фон'/>
 			<Group position='center'>
 				<Image src={armsImage} alt='герб' width={100} mt='lg'/>
 				<Text>Alumniclub друзей - студентов, выпускников</Text>

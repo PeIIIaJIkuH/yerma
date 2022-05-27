@@ -56,7 +56,7 @@ export const CreatePage: FC = observer(() => {
 		try {
 			await PostsService.createPost(ref.current!)
 			showNotification({
-				message: 'Пост создан успешно',
+				message: 'Пост отправлен на проверку',
 				color: 'green',
 			})
 		} catch (err) {

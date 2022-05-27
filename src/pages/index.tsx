@@ -16,6 +16,7 @@ import {Page} from './Page'
 import {SearchPage} from './SearchPage'
 import {TalesPage} from './TalesPage'
 import {TeachersPage} from './TeachersPage'
+import {UnverifiedPostsPage} from './UnverifiedPostsPage'
 
 export {
 	AlmaMaterPage,
@@ -36,4 +37,5 @@ export {
 	TeachersPage,
 	ErrorPage,
 	SearchPage,
+	UnverifiedPostsPage,
 }

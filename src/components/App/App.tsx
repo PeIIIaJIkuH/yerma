@@ -5,7 +5,7 @@ import {observer} from 'mobx-react-lite'
 import {FC, useEffect, useState} from 'react'
 import {BrowserRouter} from 'react-router-dom'
 import {HolidayService} from '../../services'
-import {appState} from '../../store'
+import {appState, authState} from '../../store'
 import {AppPreloader} from '../AppPreloader/AppPreloader'
 import {Aside} from '../Aside'
 import {Header} from '../Header'
@@ -48,20 +48,30 @@ export const App: FC = observer(() => {
 	useEffect(() => {
 		(async () => {
 			await appState.initializeApp()
-			const {results: holidays} = await HolidayService.getHoliday()
-			if (holidays.length) {
-				showNotification({
-					title: 'Сегодня празднуют',
-					message: holidays.map(({uuid, name}) => (
-						<div key={uuid}>
-							{name}
-						</div>
-					)),
-					color: 'blue',
-				})
-			}
 		})()
 	}, [])
+
+	useEffect(() => {
+		(async () => {
+			if (!authState.user) {
+				return
+			}
+			const {results: holidays} = await HolidayService.getHoliday()
+			if (holidays.length === 0) {
+				return
+			}
+			showNotification({
+				title: 'Сегодня празднуют',
+				message: holidays.map(({uuid, name}) => (
+					<div key={uuid}>
+						{name}
+					</div>
+				)),
+				color: 'blue',
+				autoClose: false,
+			})
+		})()
+	}, [authState.user])
 
 	if (!appState.initialized) {
 		return <AppPreloader/>
@@ -96,4 +106,3 @@ export const App: FC = observer(() => {
 
 // todo:
 //  поменять страницы ошибок
-//  захэндлить кейс, когда постов нет, показывать No Posts

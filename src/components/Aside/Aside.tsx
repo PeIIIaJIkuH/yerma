@@ -2,7 +2,8 @@ import {Aside as MantineAside, ScrollArea, useMantineTheme} from '@mantine/core'
 import {useMediaQuery} from '@mantine/hooks'
 import clsx from 'clsx'
 import {FC} from 'react'
-import {privateRoutes} from '../../routes'
+import {adminRoutes, privateRoutes} from '../../routes'
+import {authState} from '../../store'
 import {ButtonLink} from '../ButtonLink'
 import s from './Aside.module.css'
 
@@ -40,6 +41,11 @@ export const Aside: FC<Props> = ({isOpen, closeNavbar}) => {
 				<ButtonLink path={privateRoutes.memory.path} fullWidth callback={closeNavbar}>
 					Memory
 				</ButtonLink>
+				{authState.user?.is_superuser && (
+					<ButtonLink path={adminRoutes.unverified.path} fullWidth callback={closeNavbar}>
+						Посты для проверки
+					</ButtonLink>
+				)}
 			</MantineAside.Section>
 		</MantineAside>
 	)

@@ -1,4 +1,4 @@
-import {Button, Grid, Group, LoadingOverlay} from '@mantine/core'
+import {Alert, Button, Grid, Group, LoadingOverlay} from '@mantine/core'
 import {observer} from 'mobx-react-lite'
 import {FC, useEffect} from 'react'
 import {postsState} from '../../store'
@@ -8,30 +8,29 @@ import {PostCard} from '../PostCard'
 interface Props {
 	category?: PostCategoryEnum
 	query?: string | null
+	unverified?: boolean
 }
 
-export const Posts: FC<Props> = observer(({category, query}) => {
+export const Posts: FC<Props> = observer(({category, query, unverified}) => {
 	const fetchMore = async () => {
-		await postsState.fetchPosts({category, name: query || undefined})
+		await postsState.fetchPosts({category, name: query || undefined}, {unverified})
 	}
 
 	useEffect(() => {
 		(async () => {
-			await postsState.fetchPosts({category, name: query || undefined}, true)
+			await postsState.fetchPosts({category, name: query || undefined}, {anotherType: true, unverified})
 		})()
-	}, [category, query])
+	}, [category, query, unverified])
 
-	return (
+	return postsState.posts.length ? (
 		<Grid p='md' sx={{position: 'relative', height: postsState.posts.length ? '' : '100%'}}>
 			<LoadingOverlay visible={postsState.loading}/>
-			{postsState.posts.map(({uuid, name, description, author, images}) => (
-				<Grid.Col key={uuid}>
-					<PostCard title={name} description={description} author={author}
-						images={images.map(img => img.image)}
-					/>
+			{postsState.posts.map((post) => (
+				<Grid.Col key={post.uuid}>
+					<PostCard post={post} unverified/>
 				</Grid.Col>
 			))}
-			{postsState.posts.length > 0 && postsState.hasMore && (
+			{postsState.hasMore && (
 				<Grid.Col>
 					<Group position='center' mt='md'>
 						<Button onClick={fetchMore} loading={postsState.loading}>
@@ -41,5 +40,10 @@ export const Posts: FC<Props> = observer(({category, query}) => {
 				</Grid.Col>
 			)}
 		</Grid>
+	) : (
+		<Alert title='Нет постов' color='yellow' m='md'>
+			<LoadingOverlay visible={postsState.loading}/>
+			Нет постов
+		</Alert>
 	)
 })

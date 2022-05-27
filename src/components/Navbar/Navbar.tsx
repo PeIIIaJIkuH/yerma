@@ -2,7 +2,8 @@ import {Navbar as MantineNavbar, ScrollArea, useMantineTheme} from '@mantine/cor
 import {useMediaQuery} from '@mantine/hooks'
 import clsx from 'clsx'
 import {FC} from 'react'
-import {privateRoutes} from '../../routes'
+import {adminRoutes, privateRoutes} from '../../routes'
+import {authState} from '../../store'
 import {ButtonLink} from '../ButtonLink'
 import s from './Navbar.module.css'
 
@@ -58,6 +59,11 @@ export const Navbar: FC<Props> = ({isOpen, closeNavbar}) => {
 						<ButtonLink path={privateRoutes.memory.path} fullWidth callback={closeNavbar}>
 							Memory
 						</ButtonLink>
+						{authState.user?.is_superuser && (
+							<ButtonLink path={adminRoutes.unverified.path} fullWidth callback={closeNavbar}>
+								Посты для проверки
+							</ButtonLink>
+						)}
 					</>
 				)}
 			</MantineNavbar.Section>

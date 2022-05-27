@@ -1,12 +1,17 @@
-import {Divider, Group, Text} from '@mantine/core'
+import {Divider, Group, Image, Text, Title} from '@mantine/core'
 import {observer} from 'mobx-react-lite'
 import {FC} from 'react'
 import {Posts} from '../../components'
 import {PostCategoryEnum} from '../../types'
+import bgImage from './../../assets/images/9muz-bg.jpg'
 
 export const MuzPage: FC = observer(() => {
 	return (
 		<>
+			<Title order={2} p='md' align='center'>
+				Памяти Егурновой Лилии Зосимовной
+			</Title>
+			<Image src={bgImage}/>
 			<Group position='center' direction='column' spacing={0} mt='lg'>
 				<Text>Ваш скромный труд цены не знает,</Text>
 				<Text>Ни с чем он не сравним! И все с любовью величают</Text>

@@ -3,6 +3,8 @@ import {IRoute} from './types'
 
 type PublicRoutes = 'auth'
 
+type AdminRoutes = 'unverified'
+
 type PrivateRoutes =
 	| 'main'
 	| 'almaMater'
@@ -25,6 +27,14 @@ export const publicRoutes: Record<PublicRoutes, IRoute> = {
 		path: '/auth',
 		title: 'Авторизация',
 		Component: lazy(() => import('./pages').then(({AuthPage}) => ({default: AuthPage}))),
+	},
+}
+
+export const adminRoutes: Record<AdminRoutes, IRoute> = {
+	unverified: {
+		path: '/unverified',
+		title: 'Посты на проверку',
+		Component: lazy(() => import('./pages').then(({UnverifiedPostsPage}) => ({default: UnverifiedPostsPage}))),
 	},
 }
 
