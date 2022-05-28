@@ -45,7 +45,9 @@ export const PostCard: FC<Props> = ({post, unverified}) => {
 					Категория: {PostCategoryLabels[category]}
 				</Text>
 			)}
-			<RichTextEditor value={description} onChange={onChange} readOnly mt='md' className={s.editor}/>
+			<RichTextEditor value={description} onChange={onChange} readOnly mx='-md' className={s.editor}
+				style={{border: 'none'}}
+			/>
 			{unverified && (
 				<Group position='apart' p='md'>
 					<Button color='red' onClick={deletePost}>
