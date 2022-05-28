@@ -2,7 +2,6 @@ import {
 	ActionIcon,
 	Burger,
 	Button,
-	ColorScheme,
 	Group,
 	Header as MantineHeader,
 	Modal,
@@ -22,16 +21,14 @@ import {privateRoutes, publicRoutes} from '../../routes'
 import {authState} from '../../store'
 import {ISearch} from '../../types'
 import {ButtonLink} from '../ButtonLink'
-import {DarkModeButton} from '../DarkModeButton'
 import s from './Header.module.css'
 
 interface Props {
-	toggleColorScheme: (value?: ColorScheme) => void
 	isNavbarOpen: boolean
 	toggleNavbar: () => void
 }
 
-export const Header: FC<Props> = observer(({toggleColorScheme, isNavbarOpen, toggleNavbar}) => {
+export const Header: FC<Props> = observer(({isNavbarOpen, toggleNavbar}) => {
 	const theme = useMantineTheme()
 	const navigate = useNavigate()
 	const isTablet = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`)
@@ -163,7 +160,6 @@ export const Header: FC<Props> = observer(({toggleColorScheme, isNavbarOpen, tog
 							Войти
 						</ButtonLink>
 					)}
-					<DarkModeButton toggle={toggleColorScheme}/>
 				</Group>
 			</Group>
 		</MantineHeader>

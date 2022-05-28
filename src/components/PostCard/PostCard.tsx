@@ -1,8 +1,10 @@
-import {Button, Card, Divider, Group, Text} from '@mantine/core'
+import {Button, Card, Group, Text} from '@mantine/core'
+import {RichTextEditor} from '@mantine/rte'
 import {FC} from 'react'
 import {postsState} from '../../store'
 import {IPost, PostCategoryLabels} from '../../types'
 import {Slider} from '../Slider'
+import s from './PostCard.module.css'
 
 interface Props {
 	post: IPost
@@ -18,6 +20,9 @@ export const PostCard: FC<Props> = ({post, unverified}) => {
 
 	const deletePost = async () => {
 		await postsState.deletePost(uuid)
+	}
+
+	const onChange = () => {
 	}
 
 	return (
@@ -40,19 +45,16 @@ export const PostCard: FC<Props> = ({post, unverified}) => {
 					Категория: {PostCategoryLabels[category]}
 				</Text>
 			)}
-			<Text size='sm' dangerouslySetInnerHTML={{__html: description}}/>
+			<RichTextEditor value={description} onChange={onChange} readOnly mt='md' className={s.editor}/>
 			{unverified && (
-				<Card.Section>
-					<Divider/>
-					<Group position='apart' p='md'>
-						<Button color='red' onClick={deletePost}>
-							Удалить
-						</Button>
-						<Button color='green' onClick={approvePost}>
-							Одобрить
-						</Button>
-					</Group>
-				</Card.Section>
+				<Group position='apart' p='md'>
+					<Button color='red' onClick={deletePost}>
+						Удалить
+					</Button>
+					<Button color='green' onClick={approvePost}>
+						Одобрить
+					</Button>
+				</Group>
 			)}
 		</Card>
 	)

@@ -3,7 +3,6 @@ import {AppPreloader} from './AppPreloader/AppPreloader'
 import {Aside} from './Aside'
 import {LoginForm} from './Auth'
 import {ButtonLink} from './ButtonLink'
-import {DarkModeButton} from './DarkModeButton'
 import {Gaudeamus} from './Gaudeamus'
 import {Header} from './Header'
 import {Navbar} from './Navbar'
@@ -19,7 +18,6 @@ export {
 	Aside,
 	LoginForm,
 	ButtonLink,
-	DarkModeButton,
 	Header,
 	Navbar,
 	PostCard,

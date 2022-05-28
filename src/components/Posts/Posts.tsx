@@ -27,7 +27,7 @@ export const Posts: FC<Props> = observer(({category, query, unverified}) => {
 			<LoadingOverlay visible={postsState.loading}/>
 			{postsState.posts.map((post) => (
 				<Grid.Col key={post.uuid}>
-					<PostCard post={post} unverified/>
+					<PostCard post={post} unverified={unverified}/>
 				</Grid.Col>
 			))}
 			{postsState.hasMore && (

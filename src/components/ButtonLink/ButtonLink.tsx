@@ -39,7 +39,7 @@ export const ButtonLink: FC<Props> = ({children, path, fullWidth, callback, ...r
 		return pathname.startsWith(path)
 	}
 
-	const color = startsWith() ? 'blue' : theme.colorScheme === 'dark' ? 'gray' : 'dark'
+	const color = startsWith() ? 'blue' : 'dark'
 
 	return (
 		<Button variant='subtle' onClick={onClick} className={clsx(fullWidth && s.fullWidth)} color={color}

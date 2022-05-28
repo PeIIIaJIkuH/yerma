@@ -15,14 +15,13 @@ interface Props {
 export const Aside: FC<Props> = ({isOpen, closeNavbar}) => {
 	const theme = useMantineTheme()
 	const isTablet = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`)
-	const isDark = theme.colorScheme === 'dark'
 
 	return (
 		<MantineAside
 			hidden={!isOpen}
 			hiddenBreakpoint='sm'
 			width={{sm: 200}}
-			className={clsx(s.aside, isDark ? s.dark : s.light, isTablet && s.tabletAside)}
+			className={clsx(s.aside, isTablet && s.tabletAside)}
 			style={{background: theme.colors.gray[0]}}
 		>
 			<MantineAside.Section grow component={ScrollArea}>

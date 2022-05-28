@@ -26,7 +26,7 @@ export const Slider: FC<Props> = ({images, radius}) => {
 	return (
 		<>
 			<Modal opened={isOpen} onClose={onClose} title='Изображение'
-				overlayColor={theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.colors.gray[2]}
+				overlayColor={theme.colors.gray[2]}
 				overlayOpacity={0.55} overlayBlur={3} overflow='inside'
 			>
 				<Image radius={radius} src={imgSrc} alt='image'/>

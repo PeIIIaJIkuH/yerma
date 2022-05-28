@@ -13,7 +13,7 @@ export class PostsService {
 	}
 
 	static async getUnverifiedPosts(offset: number): Promise<{results: IPost[]}> {
-		return $api.get('posts/unverified//', {
+		return $api.get('posts/unverified/', {
 			params: {
 				offset,
 			},
@@ -25,10 +25,10 @@ export class PostsService {
 	}
 
 	static async approvePost(uuid: string) {
-		return $api.put(`posts/unverified//${uuid}/verify/`)
+		return $api.put(`posts/unverified/${uuid}/verify/`)
 	}
 
 	static async deletePost(uuid: string) {
-		return $api.delete(`posts/unverified//${uuid}/`)
+		return $api.delete(`posts/unverified/${uuid}/`)
 	}
 }
