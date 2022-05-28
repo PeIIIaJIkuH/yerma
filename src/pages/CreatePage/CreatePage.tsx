@@ -37,7 +37,7 @@ export const CreatePage: FC = observer(() => {
 	const [images, setImages] = useState<File[]>([])
 
 	const onDrop = (files: File[]) => {
-		setImages(files)
+		setImages(prev => [...prev, ...files])
 	}
 
 	const onReset = () => {
