@@ -41,9 +41,15 @@ export const Posts: FC<Props> = observer(({category, query, unverified}) => {
 			)}
 		</Grid>
 	) : (
-		<Alert title='Нет постов' color='yellow' m='md'>
+		<Alert title='Нет постов' color='gray' m='md'>
 			<LoadingOverlay visible={postsState.loading}/>
-			Нет постов
+			<div>
+				{query ? (
+					'Постов с таким названием не найдено'
+				) : (
+					'Нет постов с данной категорией'
+				)}
+			</div>
 		</Alert>
 	)
 })

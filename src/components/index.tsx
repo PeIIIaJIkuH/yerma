@@ -10,7 +10,6 @@ import {PostCard} from './PostCard'
 import {Posts} from './Posts'
 import {Preloader} from './Preloader'
 import {Routes} from './Routes'
-import {Slider} from './Slider'
 import {UserGroupCard} from './UserGroupCard'
 
 export {
@@ -24,7 +23,6 @@ export {
 	Preloader,
 	UserGroupCard,
 	Routes,
-	Slider,
 	Gaudeamus,
 	AppPreloader,
 	Posts,

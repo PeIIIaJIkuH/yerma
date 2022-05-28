@@ -1,10 +1,12 @@
 import {Button, Card, Group, Text} from '@mantine/core'
 import {RichTextEditor} from '@mantine/rte'
 import {FC} from 'react'
+import ImageGallery from 'react-image-gallery'
+import 'react-image-gallery/styles/css/image-gallery.css'
 import {postsState} from '../../store'
 import {IPost, PostCategoryLabels} from '../../types'
-import {Slider} from '../Slider'
 import s from './PostCard.module.css'
+
 
 interface Props {
 	post: IPost
@@ -29,7 +31,11 @@ export const PostCard: FC<Props> = ({post, unverified}) => {
 		<Card shadow='sm' p='xl'>
 			{images && (
 				<Card.Section>
-					<Slider images={images.map(img => img.image)}/>
+					<ImageGallery items={images.map(img => ({
+						original: img.image,
+						thumbnail: img.image,
+					}))}
+					/>
 				</Card.Section>
 			)}
 			<Text weight={500} size='lg' mt='sm'>
